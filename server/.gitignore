@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+storage/app.db
+storage/faiss_index/*
+uploads/*
+!uploads/.gitkeep
+!storage/faiss_index/.gitkeep
+.pytest_cache/

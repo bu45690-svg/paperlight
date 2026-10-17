@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+.venv/
+.venv*/
+venv/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+server/storage/app.db
+server/storage/faiss_index/*
+!server/storage/faiss_index/.gitkeep
+server/uploads/*
+!server/uploads/.gitkeep

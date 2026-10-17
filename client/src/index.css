@@ -1,0 +1,119 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ------------------------------------------------------------------
+   Design tokens — "Marginalia" system
+   A research-lab palette (cool ink + indigo) with a warm amber reserved
+   strictly for citation/confidence signals, so color always carries
+   meaning rather than decoration.
+------------------------------------------------------------------- */
+@theme {
+  --font-display: "Source Serif 4", ui-serif, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-bg: #f6f7fb;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef0f6;
+  --color-ink: #12141c;
+  --color-ink-soft: #565b6e;
+  --color-border: #dfe2ea;
+
+  --color-primary: #4f46e5;
+  --color-primary-dark: #4338ca;
+  --color-primary-soft: #eef0ff;
+
+  --color-citation: #b45309;
+  --color-citation-soft: #fef3e2;
+
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-warning: #d97706;
+}
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+  --color-bg: #0a0d16;
+  --color-surface: #131726;
+  --color-surface-2: #1b2032;
+  --color-ink: #e9ebf3;
+  --color-ink-soft: #9297ad;
+  --color-border: #262c42;
+
+  --color-primary: #818cf8;
+  --color-primary-dark: #6366f1;
+  --color-primary-soft: #1e2140;
+
+  --color-citation: #f2a65a;
+  --color-citation-soft: #2c2110;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  ::selection {
+    background-color: var(--color-primary);
+    color: white;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-mono-tag {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Torn-edge "marginalia" citation card signature element */
+.margin-note {
+  position: relative;
+  clip-path: polygon(
+    0% 4%, 3% 0%, 8% 3%, 13% 0%, 19% 3%, 25% 0%, 31% 3%, 37% 0%, 43% 3%,
+    49% 0%, 55% 3%, 61% 0%, 67% 3%, 73% 0%, 79% 3%, 85% 0%, 91% 3%, 97% 0%, 100% 4%,
+    100% 100%, 0% 100%
+  );
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.35s ease both;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 45%, transparent); }
+  100% { box-shadow: 0 0 0 10px transparent; }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
